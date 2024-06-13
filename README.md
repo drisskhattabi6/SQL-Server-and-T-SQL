@@ -1,80 +1,9 @@
 # SQL Server and T-SQL
 
-## Content
+This repo contains lesson about SQL-Server and T-SQL with a practical work in French for T-SQL.
 
-### Module 1: Introduction to SQL Server
-
-1. **Introduction to Databases**
-   - What is a database?
-   - Types of databases
-   - Introduction to SQL Server
-
-2. **SQL Server Architecture**
-   - SQL Server components
-   - SQL Server services
-   - Database files and filegroups
-
----
-
-### Module 2: SQL Basics
-
-1. **Introduction to T-SQL**
-   - SQL syntax and structure
-   - Data types in SQL Server
-
-2. **Basic Queries**
-   - SELECT statements
-   - Filtering data with WHERE clause
-   - Sorting data with ORDER BY
-
-3. **Joins and Subqueries**
-   - Inner join, left join, right join, full join
-   - Cross join
-   - Subqueries and correlated subqueries
-
-4. **Basic Data Manipulation**
-   - INSERT, UPDATE, DELETE statements
-
----
-
-### Module 3: Advanced SQL Queries
-
-1. **Advanced SELECT Statements**
-   - GROUP BY and HAVING clauses
-   - Using aggregate functions (SUM, AVG, COUNT, etc.)
-
-2. **Advanced Joins and Set Operations**
-   - Self-joins
-   - UNION, INTERSECT, EXCEPT
-
-3. **Window Functions**
-   - Introduction to window functions
-   - ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE()
-   - Aggregate window functions
-
-4. **Common Table Expressions (CTEs)**
-   - Introduction to CTEs
-   - Recursive CTEs
-
----
-
-### Module 4: SQL Server Programming
-
-1. **Stored Procedures**
-   - Creating and executing stored procedures
-   - Input and output parameters
-
-2. **User-Defined Functions**
-   - Scalar functions
-   - Table-valued functions
-
-3. **Triggers**
-   - Introduction to triggers
-   - AFTER and INSTEAD OF triggers
-
-4. **Views**
-   - Creating and managing views
-   - Indexed views
+- `TD BD2 (T-SQL).pdf` : this pdf contains the questions and exercices.
+- `Rapport.pdf` : this pdf contains the answers and solution of `TD BD2 (T-SQL).pdf`.
 
 ---
 
@@ -608,54 +537,7 @@ Using variables can help make your T-SQL scripts more flexible and easier to man
     SELECT column1 FROM table2;
     ```
 
-#### 3. Window Functions
-
-**Goal:** Perform calculations across a set of table rows that are related to the current row without collapsing the result set. They are often used for ranking, cumulative totals, moving averages, and other similar calculations.
-
-**Example Use:** Calculate a running total or assign a unique rank to each row within a partition of data.
-
-- **Introduction to window functions**
-
-
-    ```sql
-    SELECT column1, 
-           ROW_NUMBER() OVER (PARTITION BY column2 ORDER BY column3) AS row_num
-    FROM table_name;
-    ```
-
-- **ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE()**
-
-    ```sql
-    SELECT column1, 
-           ROW_NUMBER() OVER (ORDER BY column2) AS row_num
-    FROM table_name;
-
-    SELECT column1, 
-           RANK() OVER (ORDER BY column2) AS rank
-    FROM table_name;
-
-    SELECT column1, 
-           DENSE_RANK() OVER (ORDER BY column2) AS dense_rank
-    FROM table_name;
-
-    SELECT column1, 
-           NTILE(4) OVER (ORDER BY column2) AS quartile
-    FROM table_name;
-    ```
-
-- **Aggregate window functions**
-
-    ```sql
-    SELECT column1, 
-           SUM(column2) OVER (PARTITION BY column3) AS sum_column2
-    FROM table_name;
-
-    SELECT column1, 
-           AVG(column2) OVER (PARTITION BY column3) AS avg_column2
-    FROM table_name;
-    ```
-
-#### 4. Common Table Expressions (CTEs)
+#### 3. Common Table Expressions (CTEs)
 
 **Goal:** Simplify complex queries by breaking them into simpler subqueries that can be referenced within the main query. CTEs can also be recursive, allowing for operations on hierarchical data.
 
@@ -940,22 +822,9 @@ Using variables can help make your T-SQL scripts more flexible and easier to man
     ON vwActiveEmployees (FirstName, LastName);
     ```
 
-----
+---
 
-==================  inserted  Table 
-
-la table inserted est une table logique spéciale qui contient les lignes nouvellement insérées dans une opération de déclenchement INSERT, UPDATE ou DELETE. Cette table est accessible uniquement à l'intérieur du corps du déclencheur (Trigger) et ne peut pas être consultée directement en dehors du déclencheur.
-
-==================   SET NOCOUNT ON  
-
-La commande SET NOCOUNT ON est une instruction SQL qui spécifie que le nombre de lignes affectées par une instruction SQL ne doit pas être retourné en tant que résultat. Elle est souvent utilisée dans les déclencheurs pour éviter que les messages supplémentaires sur le nombre de lignes affectées ne soient renvoyés au client, ce qui peut améliorer les performances en réduisant le trafic réseau.
-
-Dans le contexte d'un déclencheur, l'utilisation de SET NOCOUNT ON est facultative mais recommandée pour des raisons de performance. Cela évite que des messages supplémentaires ne soient envoyés au client chaque fois que le déclencheur est déclenché, ce qui peut ne pas être nécessaire pour les opérations de déclencheur qui n'ont pas besoin de renvoyer de résultats.
-
-Donc, dans le déclencheur que je vous ai fourni précédemment, SET NOCOUNT ON est utilisé pour désactiver le renvoi du nombre de lignes affectées par les instructions SQL à des fins de performance.
-
-
-----
+## More informations and lessons :
 
 ### stored procedure in T-SQL
 
